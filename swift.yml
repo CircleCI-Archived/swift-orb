@@ -1,0 +1,17 @@
+version: 2.1
+
+description: |
+  Utilities for the Swift programming language.
+
+jobs:
+  lint:
+    description: Run `swiftlint` over the repository.
+    docker:
+      - image: dantoml/swiftlint:latest
+    steps:
+      - checkout
+      - run: swiftlint lint --reporter junit | tee result.xml
+      - store_artifacts:
+          path: result.xml
+      - store_test_results:
+          path: result.xml
