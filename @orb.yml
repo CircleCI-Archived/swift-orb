@@ -2,6 +2,7 @@ version: 2.1
 
 description: |
   Utilities for the Swift programming language
+  See this orb's source: https://github.com/CircleCI-Public/swift-orb
 
 examples:
   standard-swift-project:
