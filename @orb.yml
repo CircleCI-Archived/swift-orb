@@ -1,7 +1,7 @@
 version: 2.1
 
 description: |
-  Utilities for the Swift programming language
+  Utilities for the Swift programming language Repo: https://github.com/CircleCI-Public/swift-orb
 
 examples:
   standard-swift-project:
