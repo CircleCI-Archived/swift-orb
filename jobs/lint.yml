@@ -5,6 +5,6 @@ steps:
   - checkout
   - run: swiftlint lint --reporter junit | tee result.xml
   - store_artifacts:
-    path: result.xml
+      path: result.xml
   - store_test_results:
-    path: result.xml
+      path: result.xml
