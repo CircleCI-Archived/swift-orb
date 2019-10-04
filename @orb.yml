@@ -20,6 +20,20 @@ examples:
           jobss:
             - swift/lint
 
+commands:
+  swiftlint:
+    description: "Runs swiftlint on the current directory"
+    parameters:
+      reportFile:
+        type: string
+        default: result.xml
+    steps:
+      - run: swiftlint lint --reporter junit | tee << parameters.reportFile >>
+      - store_artifacts:
+        path: << parameters.reportFile >>
+      - store_test_results:
+        path: << parameters.reportFile >>
+
 jobs:
   lint:
     description: Run `swiftlint` over the repository.
@@ -27,8 +41,4 @@ jobs:
       - image: dantoml/swiftlint:latest
     steps:
       - checkout
-      - run: swiftlint lint --reporter junit | tee result.xml
-      - store_artifacts:
-          path: result.xml
-      - store_test_results:
-          path: result.xml
+      - swiftlint
