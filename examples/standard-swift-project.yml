@@ -9,5 +9,5 @@ usage:
 
   workflows:
     build-and-test:
-      jobss:
+      jobs:
         - swift/lint
