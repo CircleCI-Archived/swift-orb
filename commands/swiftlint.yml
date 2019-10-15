@@ -1,0 +1,11 @@
+description: "Runs swiftlint on the current directory"
+parameters:
+  reportFile:
+    type: string
+    default: result.xml
+steps:
+  - run: swiftlint lint --reporter junit | tee << parameters.reportFile >>
+  - store_artifacts:
+    path: << parameters.reportFile >>
+  - store_test_results:
+    path: << parameters.reportFile >>

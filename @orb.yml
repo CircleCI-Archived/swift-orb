@@ -1,56 +1,5 @@
 version: 2.1
 
-description: |
+description: | 
   Utilities for the Swift programming language
   See this orb's source: https://github.com/CircleCI-Public/swift-orb
-
-examples:
-  standard-swift-project:
-    description: |
-      This orb can help you lint your Swift projects, storing output
-      as CircleCI artifacts and test results
-    usage:
-      version: 2.1
-
-      orbs:
-        swift: circleci/swift@1.0.0
-
-      workflows:
-        build-and-test:
-          jobss:
-            - swift/lint
-
-executors:
-  default:
-    description: |
-      A docker container to run swiftlint
-    docker:
-      - image: dantoml/swiftlint:<<parameters.tag>>
-    parameters:
-      tag:
-        default: latest
-        description: |
-          Select a docker image version. https://hub.docker.com/r/dantoml/swiftlint/tags
-        type: string
-
-commands:
-  swiftlint:
-    description: "Runs swiftlint on the current directory"
-    parameters:
-      reportFile:
-        type: string
-        default: result.xml
-    steps:
-      - run: swiftlint lint --reporter junit | tee << parameters.reportFile >>
-      - store_artifacts:
-        path: << parameters.reportFile >>
-      - store_test_results:
-        path: << parameters.reportFile >>
-
-jobs:
-  lint:
-    description: Run `swiftlint` over the repository.
-    executor: default
-    steps:
-      - checkout
-      - swiftlint
