@@ -1,0 +1,10 @@
+description: |
+  A docker container to run swiftlint
+docker:
+  - image: dantoml/swiftlint:<<parameters.tag>>
+parameters:
+  tag:
+    default: latest
+    description: |
+      Select a docker image version. https://hub.docker.com/r/dantoml/swiftlint/tags
+    type: string

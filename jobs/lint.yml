@@ -1,4 +1,5 @@
 description: Run `swiftlint` over the repository.
+executor: default
 docker:
   - image: dantoml/swiftlint:latest
 steps:
